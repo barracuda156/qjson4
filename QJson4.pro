@@ -1,21 +1,29 @@
+QT -= gui
 
-TEMPLATE = app
-TARGET   = test
+TARGET = QJson4
+TEMPLATE = lib
+CONFIG += staticlib
 
-include($$PWD/QJson4.pri)
+SOURCES += \
+    QJsonValueRef.cpp \
+    QJsonValue.cpp \
+    QJsonParser.cpp \
+    QJsonParseError.cpp \
+    QJsonObject.cpp \
+    QJsonDocument.cpp \
+    QJsonArray.cpp
 
-SOURCES += main.cpp
+HEADERS += \
+    QJsonValueRef.h \
+    QJsonValue.h \
+    QJsonRoot.h \
+    QJsonParser.h \
+    QJsonParseError.h \
+    QJsonObject.h \
+    QJsonDocument.h \
+    QJsonArray.h
 
-CONFIG(debug, debug|release) {
-	OBJECTS_DIR = $${OUT_PWD}/.debug/obj
-	MOC_DIR     = $${OUT_PWD}/.debug/moc
-	RCC_DIR     = $${OUT_PWD}/.debug/rcc
-	UI_DIR      = $${OUT_PWD}/.debug/uic
-}
-
-CONFIG(release, debug|release) {
-	OBJECTS_DIR = $${OUT_PWD}/.release/obj
-	MOC_DIR     = $${OUT_PWD}/.release/moc
-	RCC_DIR     = $${OUT_PWD}/.release/rcc
-	UI_DIR      = $${OUT_PWD}/.release/uic
+unix: {
+    target.path = /opt/local/lib
+    INSTALLS += target
 }
